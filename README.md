@@ -1,1 +1,1 @@
-# api-rest-sismologiaCL
+# Proyecto Api-Rest-sismologiaCL
