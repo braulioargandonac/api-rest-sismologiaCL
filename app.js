@@ -1,9 +1,18 @@
+//const { urlencoded } = require("express");
 const express = require("express");
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 
 const app = express();
 
-app.get("/api", (req, res) => {
+
+
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+//routes
+app.use(require('./routes/index'));
+/*app.get("/api", (req, res) => {
     res.json({
         mensaje: "Node and JWT"
     })
@@ -51,6 +60,32 @@ function verifyToken(req, res, next){
     }
 }
 
-app.listen(3000, function(){
+/*app.listen(3000, function(){
     console.log("nodejs app running... ");
-})
+})*/
+
+app.listen(3000);
+console.log('puerto 3000');
+
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    host: 'localhost',
+    user: 'postgres',
+    password: '',
+    database: 'sismologia',
+    port: '5432'
+});
+
+const getUsers = async (req, res) => {
+   
+    const response = await pool.query('select * from users');
+    console.log(response.rows);
+    res.send('users');
+    
+    //res.status(200).json(response.row);
+}
+
+module.exports = {
+    getUsers
+}

@@ -1,15 +1,12 @@
-const cheerio = require('cheerio');
-const request = require('request-promise');
+const express = require("express");
+const app = express();
 
-// arranca todo el script
- async function init(){
-    const $ = await request({
-        uri: 'http://www.sismologia.cl/links/ultimos_sismos.html',
-        transform: body => cheerio.load(body)  
-    });
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
-    const websiteTitle = $('tbody tr td');
-    console.log(websiteTitle.text());
-}
+//routes
+app.use(require('./controllers/routes/index'));
 
-init();
+app.listen(3000);
+console.log('puerto 3000');
