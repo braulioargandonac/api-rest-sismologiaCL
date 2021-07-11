@@ -9,12 +9,14 @@ create table users(
 
 create table sismo(
     id serial primary key not null,
-    fecha_local text not null, 
-    fecha_utc text not null,
-    latitud text not null,
-    longitud text not null,
-    profundidad text not null,
-    magnitud text not null,
-    agencia text not null,
+    fecha_local text not null,
+    latitud double precision not null,
+    longitud double precision not null,
+    profundidad int not null,
+    magnitud double precision not null,
     referencia text not null
 );
+
+insert into users (nombre, email, pass) values
+    ('Juan', 'Juan@gmail.com', 'clave'),
+    ('Jorge', 'Jorge@gmail.com', 'clave');
