@@ -5,8 +5,8 @@ const { createUsers, getUsers, getUsersById, getSismosById, main} = require('../
 
 router.get('/users', getUsers);
 router.post('/users', createUsers);
-router.get('/earthquakes', main);
-router.get('/earthquakes/:id', getSismosById);
+router.get('/grupof/earthquakes', main);
+router.get('/grupof/earthquakes/:id', getSismosById);
 router.get('/users/:id', getUsersById);
 
 module.exports = router;

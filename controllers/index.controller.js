@@ -25,7 +25,7 @@ const main = async (req, res) => {
     });
     await updateSismos(array);
 
-    const response = await pool.query('select * from sismo');
+    const response = await pool.query('select * from sismo order by id;');
     res.status(200).json(response.rows);
 }
  
@@ -82,6 +82,7 @@ const getUsersById = async (req, res) => {
     const response = await pool.query('select * from users where id = $1', [id]);
     res.status(200).json(response.rows);
 }
+
 
 module.exports = {
     getSismosById,
