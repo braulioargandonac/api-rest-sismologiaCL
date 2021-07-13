@@ -42,6 +42,8 @@ Luego para ejecutar el docker, ingrese el siguiente comando:
 
 **docker-compose up**
 
+Para cambiar el puesto del docker-compose modificar la variable ports del archivo docker-compose
+
 ## Integrantes
 - Braulio Argandoña
 - Rodrigo Aguirre
