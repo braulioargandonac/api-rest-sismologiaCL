@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+    db:
+        image: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            -  api-rest-sismologia:/var/lib/postgresql/data
+
+    api-rest-sismologia:
+        build:
+            context: .
+        environment: 
+            DB_SCHEMA: sismologia
+            DB_USER: postgres
+            DB_PASSWORD: postgres
+            DB_HOST: db
+            PORT: 3000
+        command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
+        depends_on:
+            - db
+        ports:
+            - "3000:3000"
+
+volumes:
+    api-rest-sismologia:

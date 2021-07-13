@@ -28,3 +28,14 @@ Lo primero es conectarse a la base de datos, para esto es necesario ejecutar los
 y finalmente para compilar el proyecto, es necesario ejecutar el comando:
 
 **npm start**
+
+## Docker
+Para crear una imagen del docker tiene que ingresar el siguiente comando:
+
+**docker build -t api-rest .**
+
+Para ejecutar el docker tiene que ingresar el siguiente comando:
+
+**docker run -it -p 4000:3000 api-rest**
+sudo apt install docker-compose
+docker-compose up
