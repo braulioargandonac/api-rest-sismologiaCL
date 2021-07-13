@@ -25,9 +25,16 @@ const main = async (req, res) => {
     });
     await updateSismos(array);
 
-    const response = await pool.query('select * from sismo order by id;');
-    res.status(200).json(response.rows);
+    try{
+        const response = await pool.query('select * from sismo order by id;');
+        await res.status(200).json(response.rows);
+    }catch{
+        res.status(401).json({
+            message: 'Sin autorización',
+        });
+    }
 }
+
  
 
 const pool = new Pool({
@@ -39,15 +46,21 @@ const pool = new Pool({
 });
 
 const createUsers = async (req, res) => {
-    const { nombre, email, pass } = req.body;
-    const response = await pool.query('insert into users (nombre, email, pass) values ($1, $2, $3)', [nombre, email, pass]);
-    console.log(response);
-    res.json({
-        message: 'Usuario creado con exito',
-        body:{
-            user: {nombre, email, pass}
-        }
-    })
+    try{
+        const { nombre, email, pass } = req.body;
+        const response = await pool.query('insert into users (nombre, email, pass) values ($1, $2, $3)', [nombre, email, pass]);
+        console.log(response);
+        res.json({
+            message: 'Usuario creado con exito',
+            body:{
+                user: {nombre, email, pass}
+            }
+        })
+    }catch{
+        res.status(412).json({
+            message: 'Precondición Fallida',
+        });
+    }
 };
 
 async function updateSismos(array){
@@ -66,21 +79,38 @@ async function updateSismos(array){
 };
 
 const getUsers = async (req, res) => {
-    
-    const response = await pool.query('select * from users');
-    res.status(200).json(response.rows);
+    try{
+        const response = await pool.query('select * from users');
+        res.status(200).json(response.rows);
+    }catch{
+        res.status(401).json({
+            message: 'Sin autorización',
+        });
+    }
 }
 
 const getSismosById = async (req, res) => {
-    const id = req.params.id;
-    const response = await pool.query('select * from sismo where id = $1', [id]);
-    res.status(200).json(response.rows);
+    try{
+        const id = req.params.id;
+        const response = await pool.query('select * from sismo where id = $1', [id]);
+        res.status(200).json(response.rows);
+    }catch{
+        res.status(404).json({
+            message: 'No se encuentra',
+        });
+    }
 }
 
 const getUsersById = async (req, res) => {
-    const id = req.params.id;
-    const response = await pool.query('select * from users where id = $1', [id]);
-    res.status(200).json(response.rows);
+    try{
+        const id = req.params.id;
+        const response = await pool.query('select * from users where id = $1', [id]);
+        res.status(200).json(response.rows);
+    }catch{
+        res.status(404).json({
+            message: 'No se encuentra',
+        });
+    }
 }
 
 
