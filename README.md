@@ -34,8 +34,15 @@ Para crear una imagen del docker tiene que ingresar el siguiente comando:
 
 **docker build -t api-rest .**
 
-Para ejecutar el docker tiene que ingresar el siguiente comando:
+Para ejecutar el docker es necesario tener instalado el docker-compose, en caso de no tenerlo ingresar el siguiente comando:
 
-**docker run -it -p 4000:3000 api-rest**
-sudo apt install docker-compose
-docker-compose up
+**sudo apt install docker-compose**
+
+Luego para ejecutar el docker, ingrese el siguiente comando:
+
+**docker-compose up**
+
+## Integrantes
+- Braulio Argandoña
+- Rodrigo Aguirre
+- Kevin Salinas
