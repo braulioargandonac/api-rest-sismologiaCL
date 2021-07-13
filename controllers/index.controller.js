@@ -37,10 +37,10 @@ const main = async (req, res) => {
  
 
 const pool = new Pool({
-    host: 'localhost',
+    host: 'db',
     user: 'postgres',
     password: 'postgres',
-    database: 'sismologia',
+    database: 'postgres',
     port: '5432'
 });
 

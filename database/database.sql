@@ -1,6 +1,6 @@
-create database sismologia; -- se crea la base de datos sismologia
+--create database sismologia; -- se crea la base de datos sismologia
 
-drop table if exists users cascade;
+--drop table if exists users cascade;
 create table users( -- tabla de usuario
     id serial primary key not null,
     nombre text not null,            --text permite contener cadenas de longitud ilimitada
@@ -8,7 +8,7 @@ create table users( -- tabla de usuario
     pass text not null
 );
 
-drop table if exists sismo cascade;
+--drop table if exists sismo cascade;
 create table sismo( --tabla de sismo
     id serial primary key not null,
     fecha_local text not null,
