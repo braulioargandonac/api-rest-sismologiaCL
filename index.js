@@ -46,7 +46,7 @@ app.post("/api/login", (req, res) => {
         email: "kevin.salinasv@utem.cl"
     }
 
-    jwt.sign({user}, 'secretkey', {expiresIn: '60s'} ,(err, token) => { // expiresIn hace que el token expire en un determinado tiempo
+    jwt.sign({user}, 'secretkey', {expiresIn: '120s'} ,(err, token) => { // expiresIn hace que el token expire en un determinado tiempo
         res.json({
             token // token: token
         })
