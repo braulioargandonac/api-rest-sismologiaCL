@@ -21,11 +21,26 @@ app.get('/', function(req, res){
     res.send(mensaje);
 })
 
+
+
+
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE', 'OPTIONS', 'HEAD');
+    next();
+});
+
+
+
 // ruta de los datos obtenidos de sismologia
 app.use(require('./controllers/routes/index'));
 
-
-
+app.listen(18085, function(){ // utilizamos el puerto 3000
+    console.log("nodejs app running... ");
+})
 
 //ruta del usuario
 
@@ -82,9 +97,7 @@ function verifyToken(req, res, next){ // encargada de verificar si realmente el 
     }
 }
 
-app.listen(3000, function(){ // utilizamos el puerto 3000
-    console.log("nodejs app running... ");
-})
+
 
 
 

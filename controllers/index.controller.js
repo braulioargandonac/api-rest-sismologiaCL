@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const request = require('request-promise');
 
 
+
 // arranca todo el script
 const main = async (req, res) => {
     const resu = await request.get("http://www.sismologia.cl/links/ultimos_sismos.html");
@@ -37,11 +38,11 @@ const main = async (req, res) => {
  
 
 const pool = new Pool({
-    host: 'db',
-    user: 'postgres',
-    password: 'postgres',
-    database: 'postgres',
-    port: '5432'
+    host: 'api.jkd.cl',
+    user: 'grupo_f',
+    password: 'x3ann5pp',
+    database: 'grupo_f_db',
+    port: '6432'
 });
 
 const createUsers = async (req, res) => {
